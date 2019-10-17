@@ -7,6 +7,7 @@ import Traject from '../../traject/container/Traject';
 import Distribution from '../../distribution/container/Distribution';
 import Whistle from '../../whistle/container/Whistle';
 
+import { Colors } from '../styles/Template';
 import TabBarIcon from './TabBarIcon';
 
 export const TabNavigator = createBottomTabNavigator(
@@ -50,6 +51,10 @@ export const TabNavigator = createBottomTabNavigator(
   },
   {
     initialRouteName: 'Home',
+    tabBarOptions: {
+      inactiveTintColor: Colors.primary,
+      activeTintColor: Colors.secondary,
+    },
   },
 )
 
