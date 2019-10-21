@@ -5,7 +5,7 @@ export default class extends Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Traject</Text>
+        <Text>Path</Text>
       </View>
     );
   }

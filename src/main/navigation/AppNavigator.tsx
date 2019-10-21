@@ -3,7 +3,7 @@ import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import Home from '../../home/container/Home';
-import Traject from '../../traject/container/Traject';
+import Path from '../../path/container/Path';
 import Distribution from '../../distribution/container/Distribution';
 import Whistle from '../../whistle/container/Whistle';
 
@@ -21,8 +21,8 @@ export const TabNavigator = createBottomTabNavigator(
         )
       },
     },
-    Traject: {
-      screen: Traject,
+    Path: {
+      screen: Path,
       navigationOptions: {
         tabBarLabel: "Trajet",
         tabBarIcon: ({focused}) => (
@@ -35,7 +35,7 @@ export const TabNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Distribution",
         tabBarIcon: ({focused}) => (
-          <TabBarIcon focused={focused} name="food-apple" />
+          <TabBarIcon focused={focused} name="bone" />
         )
       },
     },
