@@ -1,14 +1,49 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Colors } from '../../main/styles/Template';
 
-export default class extends Component {
+interface State {
+  bleAddrs: string[];
+}
+
+export default class Home extends Component<{}, State> {
+  constructor(props: any) {
+    super(props);
+    this.state = { bleAddrs: [] };
+  }
+
+  searchBleDevices = () => {
+    // Todo
+  }
+
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Home</Text>
-        <Button title="Scan Bluetooth" onPress={() => null}/>
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.searchBtn} onPress={this.searchBleDevices} activeOpacity={0.7}>
+          <Text style={styles.searchTxt}>Trouver un promeneur</Text>
+          <Icon name="bluetooth" size={30} color={Colors.primary}/>
+        </TouchableOpacity>
+        {this.state.bleAddrs.map((addr) => <Text>{addr}</Text>)}
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchBtn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchTxt: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: Colors.primary,
+  }
+})

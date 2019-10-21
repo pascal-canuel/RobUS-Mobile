@@ -3,14 +3,14 @@ import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-nati
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from '../../main/styles/Template';
 
-export default class extends Component {
+export default class Whistle extends Component {
   whistle = () => {
     // Todo
   }
 
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={styles.container}>
         <Text style={styles.descTxt}>Taper pour appeler votre chien!</Text>
         <TouchableOpacity style={styles.whistleBtn} onPress={this.whistle} activeOpacity={0.7}>
           <Icon name="bell-ring" size={240} color={Colors.secondary}/>
@@ -23,6 +23,11 @@ export default class extends Component {
 const whistleBtnRatio = Dimensions.get('window').width * 0.8;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   descTxt: {
     fontSize: 24,
     fontWeight: 'bold',
