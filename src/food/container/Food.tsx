@@ -4,8 +4,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from '../../main/styles/Template';
 import Toast from '../../main/component/Toast';
 
-export default class Distribution extends Component {
-  distribution = () => {
+export default class Food extends Component {
+  foodDistribution = () => {
     Toast('Nani');
     // Todo
   }
@@ -14,7 +14,7 @@ export default class Distribution extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.descTxt}>Taper pour donner de la nourrite à votre chien!</Text>
-        <TouchableOpacity style={styles.distributionBtn} onPress={this.distribution} activeOpacity={0.7}>
+        <TouchableOpacity style={styles.foodBtn} onPress={this.foodDistribution} activeOpacity={0.7}>
           <Icon name="bone" size={240} color={Colors.secondary}/>
         </TouchableOpacity>
       </View>
@@ -22,7 +22,7 @@ export default class Distribution extends Component {
   }
 }
 
-const distributionBtnRatio = Dimensions.get('window').width * 0.8;
+const foodBtnRatio = Dimensions.get('window').width * 0.8;
 
 const styles = StyleSheet.create({
   container: {
@@ -35,9 +35,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  distributionBtn: {
-    width: distributionBtnRatio,
-    height: distributionBtnRatio,
+  foodBtn: {
+    width: foodBtnRatio,
+    height: foodBtnRatio,
     alignItems: 'center',
     justifyContent: 'center',
   },

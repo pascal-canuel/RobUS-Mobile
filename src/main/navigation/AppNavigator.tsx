@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import Home from '../../home/container/Home';
 import Path from '../../path/container/Path';
-import Distribution from '../../distribution/container/Distribution';
+import Food from '../../food/container/Food';
 import Whistle from '../../whistle/container/Whistle';
 
 import { Colors } from '../styles/Template';
@@ -30,8 +30,8 @@ export const TabNavigator = createBottomTabNavigator(
         )
       },
     },
-    Distribution: {
-      screen: Distribution,
+    Food: {
+      screen: Food,
       navigationOptions: {
         tabBarLabel: "Distribution",
         tabBarIcon: ({focused}) => (

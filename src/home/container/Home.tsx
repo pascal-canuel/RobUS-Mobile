@@ -1,44 +1,29 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Device } from 'react-native-ble-plx';
 import { Colors } from '../../main/styles/Template';
-import { BleManager, Device } from 'react-native-ble-plx';
-import base64 from 'react-native-base64';
+import BleRobus from '../../main/ble/BleRobus';
 
 interface State {
   bleDevices: Device[];
 }
 
 export default class Home extends Component<{}, State> {
-  manager = new BleManager();
-
   constructor(props: any) {
     super(props);
     this.state = { bleDevices: [] };
   }
 
-  searchBleDevices = () => {
-    this.manager.startDeviceScan(null, null, (error, device) => {
-        if (error) {
-            // Handle error (scanning will be stopped automatically)
-            return
-        }
-        if (device != null) {
-          this.setState({bleDevices: [...this.state.bleDevices, device]});
-        }
-    });
-  }
-
-  sendMsgBleDevice = (device: Device) => {
-    const encodedData = base64.encode('Hello, world');
-    device.writeCharacteristicWithResponseForService('', '', encodedData);
-    const decodedData = base64.decode(encodedData);
+  scanDevices = () => {
+    // BleRobus.Instance.scan()
+    // this.setState({bleDevices: })
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.searchBtn} onPress={this.searchBleDevices} activeOpacity={0.7}>
+        <TouchableOpacity style={styles.searchBtn} onPress={this.scanDevices} activeOpacity={0.7}>
           <Text style={styles.searchTxt}>Trouver un promeneur</Text>
           <Icon style={styles.searchIcon} name="bluetooth" size={30} color={Colors.primary}/>
         </TouchableOpacity>
