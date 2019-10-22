@@ -52,23 +52,24 @@ export default class Path extends Component<{}, State> {
     return (
       <View style={styles.container}>
         <Text style={styles.desc}>Sélectionner un trajet</Text>
-        <View>
+        <View style={styles.posView}>
           <View style={styles.posRow}>
-            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(0)}>
+            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(0)} activeOpacity={0.7}>
               <Text style={styles.posTxt}>{this.displayIndex(0)}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(1)}>
+            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(1)} activeOpacity={0.7}>
               <Text style={styles.posTxt}>{this.displayIndex(1)}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.posRow}>
-            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(2)}>
+            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(2)} activeOpacity={0.7}>
               <Text style={styles.posTxt}>{this.displayIndex(2)}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(3)}>
+            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(3)} activeOpacity={0.7}>
               <Text style={styles.posTxt}>{this.displayIndex(3)}</Text>
             </TouchableOpacity>
           </View>
+          <View style={styles.posLines}/>
         </View>
         <TouchableOpacity style={styles.clearBtn} onPress={this.clearPos} activeOpacity={0.7}>
           <Text style={styles.clearTxt}>Effacer</Text>
@@ -95,6 +96,23 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
   },
+  posView: {
+    borderColor: 'black',
+    borderWidth: 1,
+    borderStyle: "dashed",
+    borderRadius: 5,
+    margin: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  posLines: {
+    borderColor: 'black',
+    borderWidth: 5,
+    width: 160,
+    height: 160,
+    position: 'absolute',
+    zIndex: 1,
+  },
   posRow: {
     flexDirection: 'row',
   },
@@ -106,6 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.primaryLight,
     margin: 35,
+    zIndex: 2,
   },
   posTxt: {
     fontSize: 24,

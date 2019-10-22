@@ -10,5 +10,9 @@ export default (msg: string) => {
         hideOnPress: true,
         backgroundColor: Colors.secondary,
         shadowColor: Colors.primary,
+        textStyle: {
+            marginLeft: 5,
+            marginRight: 5,
+        },
     });
 }
