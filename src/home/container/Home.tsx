@@ -16,8 +16,9 @@ export default class Home extends Component<{}, State> {
   }
 
   scanDevices = () => {
-    // BleRobus.Instance.scan()
-    // this.setState({bleDevices: })
+    BleRobus.Instance.scan(5000).then(devices => {
+      this.setState({bleDevices: devices})
+    })
   }
 
   render() {
