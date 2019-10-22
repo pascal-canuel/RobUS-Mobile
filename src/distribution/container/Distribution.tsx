@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from '../../main/styles/Template';
+import Toast from '../../main/component/Toast';
 
 export default class Distribution extends Component {
   distribution = () => {
+    Toast('Nani');
     // Todo
   }
 
