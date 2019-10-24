@@ -33,8 +33,6 @@ target 'RobUSMobile' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  pod 'react-native-ble-plx', :path => '../node_modules/react-native-ble-plx'
-
   target 'RobUSMobileTests' do
     inherit! :search_paths
     # Pods for testing

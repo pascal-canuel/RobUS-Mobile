@@ -1,34 +1,22 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Device } from 'react-native-ble-plx';
 import { Colors } from '../../main/styles/Template';
-import BleRobus from '../../main/ble/BleRobus';
+import BleManager from '../../main/ble/BleManager';
 
-interface State {
-  bleDevices: Device[];
-}
-
-export default class Home extends Component<{}, State> {
-  constructor(props: any) {
-    super(props);
-    this.state = { bleDevices: [] };
+export default class Home extends Component {
+  scan = () => {
+    // Todo
+    BleManager.Instance.scan();
   }
-
-  scanDevices = () => {
-    BleRobus.Instance.scan(5000).then(devices => {
-      this.setState({bleDevices: devices})
-    })
-  }
-
+  
   render() {
     return (
       <View style={styles.container}>
-        <TouchableOpacity style={styles.searchBtn} onPress={this.scanDevices} activeOpacity={0.7}>
+        <TouchableOpacity style={styles.searchBtn} onPress={this.scan} activeOpacity={0.7}>
           <Text style={styles.searchTxt}>Trouver un promeneur</Text>
           <Icon style={styles.searchIcon} name="bluetooth" size={30} color={Colors.primary}/>
         </TouchableOpacity>
-        {this.state.bleDevices.map(bleDevice => <Text>{bleDevice.name}</Text>)}
       </View>
     );
   }

@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "test": "jest",
-    "postinstall": "npx jetify"
+    "test": "jest"
   },
   "dependencies": {
     "@types/jest": "^24.0.18",
@@ -15,8 +14,6 @@
     "@types/react-test-renderer": "^16.9.0",
     "react": "16.8.6",
     "react-native": "0.60.5",
-    "react-native-base64": "0.0.2",
-    "react-native-ble-plx": "^1.1.0",
     "react-native-gesture-handler": "^1.4.1",
     "react-native-reanimated": "^1.2.0",
     "react-native-root-toast": "^3.1.2",
@@ -35,7 +32,6 @@
     "@react-native-community/eslint-config": "^0.0.3",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
-    "jetifier": "^1.6.4",
     "metro-react-native-babel-preset": "0.54.1",
     "react-test-renderer": "16.8.6"
   },
