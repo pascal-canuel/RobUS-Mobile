@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from '../../main/styles/Template';
-import Toast from '../../main/component/Toast';
-import BluetoothSerial from 'react-native-bluetooth-serial';
+import BleManager from '../../main/ble/BleManager';
 
 interface State {
   posSelected: number[];
 }
 
 export default class Path extends Component<{}, State> {
-
   constructor(props: any) {
     super(props);
 
@@ -18,12 +16,7 @@ export default class Path extends Component<{}, State> {
   }
 
   startPath = () => {
-    // Todo
-    BluetoothSerial.isConnected().then((res: boolean) => {
-      if (res) {
-        BluetoothSerial.write('GUCCI').then(() => Toast('Nani'));
-      }
-    });
+    BleManager.write('GUCCI');
   }
 
   pressPos = (id: number) => {

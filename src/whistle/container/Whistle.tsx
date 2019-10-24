@@ -2,17 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from '../../main/styles/Template';
-import Toast from '../../main/component/Toast';
-import BluetoothSerial from 'react-native-bluetooth-serial';
+import BleManager from '../../main/ble/BleManager';
 
 export default class Whistle extends Component {
   whistle = () => {
-    // Todo
-    BluetoothSerial.isConnected().then((res: boolean) => {
-      if (res) {
-        BluetoothSerial.write('Sir Path <3').then(() => Toast('Nani'));
-      }
-    });
+    BleManager.write('Sir Path <3');
   }
 
   render() {

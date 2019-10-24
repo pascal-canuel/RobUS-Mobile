@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Dimensions, FlatList } from '
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from '../../main/styles/Template';
 import BluetoothSerial from 'react-native-bluetooth-serial';
+import ErrorToast from '../../main/component/ErrorToast';
 
 interface Device {
   id: string;
@@ -13,7 +14,7 @@ interface Device {
 interface State {
   devices: Device[];
   selectedDevice: Device | null;
-  isConnected: boolean;
+  connectedDevice: Device | null;
   disableConnectionBtn: boolean;
 }
 
@@ -24,7 +25,7 @@ export default class Home extends Component<{}, State> {
     this.state = {
       devices: [],
       selectedDevice: null,
-      isConnected: false,
+      connectedDevice: null,
       disableConnectionBtn: false
     };
   }
@@ -33,15 +34,15 @@ export default class Home extends Component<{}, State> {
     BluetoothSerial.list().then((devices: Device[]) => this.setState({devices}) );
   }
   
-  setSelectedDevice = (device: Device) => this.setState({selectedDevice: device})
+  setSelectedDevice = (device: Device) => this.setState({selectedDevice: device, devices: [...this.state.devices]})
 
   toggleConnection = () => {
     this.setState({disableConnectionBtn: true});
-    if (this.state.isConnected) {
+    if (this.state.connectedDevice) {
       BluetoothSerial.disconnect()
         .then(() => {
           this.setState({
-            isConnected: false,
+            connectedDevice: null,
             disableConnectionBtn: false,
             devices: [...this.state.devices] // fix to reload flatlist and update selected device style
           });
@@ -51,10 +52,13 @@ export default class Home extends Component<{}, State> {
       BluetoothSerial.connect(this.state.selectedDevice!.id)
         .then(() => {
           this.setState({
-            isConnected: true, 
+            connectedDevice: this.state.selectedDevice, 
             disableConnectionBtn: false,
             devices: [...this.state.devices]
           });
+        }).catch(() => {
+          this.setState({disableConnectionBtn: false});
+          ErrorToast('Connexion impossible. L\'appareil est surement fermé');
         });
     }
   }
@@ -70,7 +74,12 @@ export default class Home extends Component<{}, State> {
           data={this.state.devices}
           renderItem={({item}) =>
             <TouchableOpacity 
-              style={this.state.selectedDevice && item.id === this.state.selectedDevice.id && this.state.isConnected? styles.connectedDeviceBtn : styles.deviceBtn} 
+              style={this.state.selectedDevice && item.id === this.state.selectedDevice.id? 
+                  styles.selectedDeviceBtn :
+                  this.state.connectedDevice && item.id === this.state.connectedDevice.id? 
+                  styles.connectedDeviceBtn :
+                  styles.deviceBtn 
+              } 
               onPress={() => this.setSelectedDevice(item)} 
               activeOpacity={0.7}
             >
@@ -82,7 +91,7 @@ export default class Home extends Component<{}, State> {
         />
         {this.state.selectedDevice &&
           <TouchableOpacity style={styles.connectionBtn} onPress={this.toggleConnection} disabled={this.state.disableConnectionBtn} activeOpacity={0.7}>
-            <Text style={styles.connectionTxt}>{this.state.isConnected? "Déconnecter" : "Connecter"}</Text>
+            <Text style={styles.connectionTxt}>{this.state.connectedDevice? "Déconnecter" : "Connecter"}</Text>
           </TouchableOpacity>
         }
       </View>
@@ -123,13 +132,21 @@ const styles = StyleSheet.create({
   },
   deviceBtn: {
     width: btnWidth,
+    borderRadius: 10,
+  },
+  selectedDeviceBtn: {
+    width: btnWidth,
+    backgroundColor: Colors.primaryLight,
+    borderRadius: 10,
   },
   connectedDeviceBtn: {
     width: btnWidth,
     backgroundColor: Colors.secondary,
+    borderRadius: 10,
   },
   deviceTxt: {
     fontSize: 20,
+    marginLeft: 5,
   },
   connectionBtn: {
     alignItems: 'center',
