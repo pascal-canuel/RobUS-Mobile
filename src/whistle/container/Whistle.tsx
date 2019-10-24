@@ -3,11 +3,16 @@ import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-nati
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from '../../main/styles/Template';
 import Toast from '../../main/component/Toast';
+import BluetoothSerial from 'react-native-bluetooth-serial';
 
 export default class Whistle extends Component {
   whistle = () => {
     // Todo
-    Toast('Nani');
+    BluetoothSerial.isConnected().then((res: boolean) => {
+      if (res) {
+        BluetoothSerial.write('Sir Path <3').then(() => Toast('Nani'));
+      }
+    });
   }
 
   render() {

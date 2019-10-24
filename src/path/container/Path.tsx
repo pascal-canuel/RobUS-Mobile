@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-nati
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Colors } from '../../main/styles/Template';
 import Toast from '../../main/component/Toast';
+import BluetoothSerial from 'react-native-bluetooth-serial';
 
 interface State {
   posSelected: number[];
@@ -18,7 +19,11 @@ export default class Path extends Component<{}, State> {
 
   startPath = () => {
     // Todo
-    Toast('Nani');
+    BluetoothSerial.isConnected().then((res: boolean) => {
+      if (res) {
+        BluetoothSerial.write('GUCCI').then(() => Toast('Nani'));
+      }
+    });
   }
 
   pressPos = (id: number) => {
