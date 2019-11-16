@@ -16,7 +16,9 @@ export default class Path extends Component<{}, State> {
   }
 
   startPath = () => {
-    BleManager.write('GUCCI');
+    let str = 'MOVE';
+    this.state.posSelected.forEach(pos => str += pos);
+    BleManager.write(str);
   }
 
   pressPos = (id: number) => {
@@ -62,9 +64,6 @@ export default class Path extends Component<{}, State> {
           <View style={styles.posRow}>
             <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(2)} activeOpacity={0.7}>
               <Text style={styles.posTxt}>{this.displayIndex(2)}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(3)} activeOpacity={0.7}>
-              <Text style={styles.posTxt}>{this.displayIndex(3)}</Text>
             </TouchableOpacity>
           </View>
           <View style={styles.posLines}/>

@@ -6,7 +6,7 @@ import BleManager from '../../main/ble/BleManager';
 
 export default class Food extends Component {
   foodDistribution = () => {
-    BleManager.write('Buffalo ici LOL');
+    BleManager.write('FOOD');
   }
 
   render() {

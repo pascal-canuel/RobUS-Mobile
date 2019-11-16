@@ -6,7 +6,7 @@ import BleManager from '../../main/ble/BleManager';
 
 export default class Whistle extends Component {
   whistle = () => {
-    BleManager.write('Sir Path <3');
+    BleManager.write('WHISTLE');
   }
 
   render() {
