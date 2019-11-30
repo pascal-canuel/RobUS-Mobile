@@ -6,19 +6,23 @@ import BleManager from '../../main/ble/BleManager';
 
 interface State {
   posSelected: number[];
+  selectedBtn: number;
 }
 
 export default class Path extends Component<{}, State> {
   constructor(props: any) {
     super(props);
 
-    this.state = { posSelected: [] };
+    this.state = { 
+      posSelected: [],
+      selectedBtn: -1,
+     };
   }
 
   startPath = () => {
-    let str = 'MOVE';
-    this.state.posSelected.forEach(pos => str += pos);
-    BleManager.write(str);
+    // let str = 'MOVE';
+    // this.state.posSelected.forEach(pos => str += pos);
+    BleManager.write('MOVE' + this.state.selectedBtn);
   }
 
   pressPos = (id: number) => {
@@ -27,6 +31,11 @@ export default class Path extends Component<{}, State> {
     } else {
       this.selectPos(id);
     }
+  }
+
+  selectBtn =(id: number)=> {
+    this.setState({selectedBtn: id==this.state.selectedBtn?-1:id})
+    
   }
 
   selectPos = (id: number) => {
@@ -46,31 +55,24 @@ export default class Path extends Component<{}, State> {
     } else {
       return index + 1;
     }
-  } 
+  }
 
   render() {
     return (
       <View style={styles.container}>
         <Text style={styles.desc}>Sélectionner un trajet</Text>
-        <View style={styles.posView}>
-          <View style={styles.posRow}>
-            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(0)} activeOpacity={0.7}>
-              <Text style={styles.posTxt}>{this.displayIndex(0)}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(1)} activeOpacity={0.7}>
-              <Text style={styles.posTxt}>{this.displayIndex(1)}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.posRow}>
-            <TouchableOpacity style={styles.posBtn} onPress={() => this.pressPos(2)} activeOpacity={0.7}>
-              <Text style={styles.posTxt}>{this.displayIndex(2)}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.posLines}/>
+        <View style={styles.trajet}>
+          <TouchableOpacity style={this.state.selectedBtn==0?styles.selectedBtn:styles.posBtn} onPress={() =>this.selectBtn(0)} activeOpacity={0.7}>
+            <Text style={styles.clearTxt}>
+              Court
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={this.state.selectedBtn==1?styles.selectedBtn:styles.posBtn} onPress={() => this.selectBtn(1)} activeOpacity={0.7}>
+            <Text style={styles.clearTxt}>
+              Long
+            </Text>
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.clearBtn} onPress={this.clearPos} activeOpacity={0.7}>
-          <Text style={styles.clearTxt}>Effacer</Text>
-        </TouchableOpacity>
         <TouchableOpacity style={styles.startBtn} onPress={this.startPath} activeOpacity={0.7}>
           <Text style={styles.startTxt}>Commencer</Text>
           <Icon style={styles.startIcon} name="dog-service" size={30} color="white" />
@@ -120,8 +122,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Colors.primaryLight,
-    margin: 35,
     zIndex: 2,
+    margin: 5,
   },
   posTxt: {
     fontSize: 24,
@@ -160,5 +162,18 @@ const styles = StyleSheet.create({
   },
   startIcon: {
     marginLeft: 10,
+  },
+  trajet: {
+    flexDirection: 'row',
+  },
+  selectedBtn: {
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor:  Colors.secondary,
+    zIndex: 2,
+    margin: 5,
   },
 })
