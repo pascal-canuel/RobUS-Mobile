@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.primaryLight,
     zIndex: 2,
-    margin: 5,
+    margin: 25,
   },
   posTxt: {
     fontSize: 24,
@@ -165,6 +165,7 @@ const styles = StyleSheet.create({
   },
   trajet: {
     flexDirection: 'row',
+    margin: 40,
   },
   selectedBtn: {
     width: 90,
@@ -174,6 +175,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor:  Colors.secondary,
     zIndex: 2,
-    margin: 5,
+    margin: 25,
   },
 })

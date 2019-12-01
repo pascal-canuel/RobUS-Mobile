@@ -6,6 +6,7 @@ import Home from '../../home/container/Home';
 import Path from '../../path/container/Path';
 import Food from '../../food/container/Food';
 import Whistle from '../../whistle/container/Whistle';
+import Pid from '../../pid/container/Pid';
 
 import { Colors } from '../styles/Template';
 import TabBarIcon from './TabBarIcon';
@@ -45,6 +46,15 @@ export const TabNavigator = createBottomTabNavigator(
         tabBarLabel: "Sifflet",
         tabBarIcon: ({focused}) => (
           <TabBarIcon focused={focused} name="whistle" />
+        )
+      },
+    },
+    Pid: {
+      screen: Pid,
+      navigationOptions: {
+        tabBarLabel: "PID",
+        tabBarIcon: ({focused}) => (
+          <TabBarIcon focused={focused} name="car-traction-control" />
         )
       },
     },
