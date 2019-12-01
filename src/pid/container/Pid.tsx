@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {View, Text, Slider, TouchableHighlight, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
+import {View, Text, Slider, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
 import BleManager from '../../main/ble/BleManager';
 import {Colors} from "../../main/styles/Template";
 
@@ -47,7 +47,7 @@ export default class Pid extends Component<{}, State> {
     render() {
         return(
             <View style={styles.container}>
-                <Text style={styles.labelTxt}>Speed</Text>
+                <Text style={styles.labelTxt}>Vitesse</Text>
                 <Slider
                     style={{width: 300, height: 30}}
                     value={this.state.speed}
@@ -107,9 +107,9 @@ export default class Pid extends Component<{}, State> {
                 />
                 <Text style={styles.valueTxt}>{this.state.kD}</Text>
 
-                <TouchableHighlight style={styles.resetBtn} onPress={this.setDefault} activeOpacity={0.7}>
-                    <Text style={styles.resetTxt}>Reset settings</Text>
-                </TouchableHighlight>
+                <TouchableOpacity style={styles.resetBtn} onPress={this.setDefault} activeOpacity={0.7}>
+                    <Text style={styles.resetTxt}>Réinitialiser</Text>
+                </TouchableOpacity>
             </View>   
         )
     }

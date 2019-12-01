@@ -6,7 +6,7 @@ function write(data: string) {
   BluetoothSerial.isConnected().then((res: boolean) => {
     if (res) {
       BluetoothSerial.write(data)
-        .then(() => Toast('Nani'));
+        .then(() => Toast('Réussi'));
     } else {
       ErrorToast('Aucun promeneur connecté');
     }

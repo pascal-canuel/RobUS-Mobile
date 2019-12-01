@@ -12,7 +12,7 @@ export default class Food extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.descTxt}>Taper pour donner de la nourrite à votre chien!</Text>
+        <Text style={styles.descTxt}>Taper pour donner de la nourriture à votre chien!</Text>
         <TouchableOpacity style={styles.foodBtn} onPress={this.foodDistribution} activeOpacity={0.7}>
           <Icon name="bone" size={240} color={Colors.secondary}/>
         </TouchableOpacity>
